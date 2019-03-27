@@ -7,9 +7,9 @@
     %i.post-date=post.created_at.strftime("%B %e, %Y")
   .post-body
     - if local_assigns[:truncate] == true
-      = post.rendered_text(500)
+      = sanitize post.rendered_text(500), scrubber: script_scrubber
     - else
-      = post.rendered_text
+      = sanitize post.rendered_text, scrubber: script_scrubber
   - if local_assigns[:truncate] == true
     %a.block.read-more-link{"href" => "#{post.author_relative_url}"}
       Read more...
